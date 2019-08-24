@@ -1,107 +1,73 @@
-import React from 'react';
+import React from 'react'
+import ErrorBoundaries from './ErrorBoundaries';
+import Excercise1 from './excercises/01';
+import Excercise2 from './excercises/02';
+import Excercise3 from './excercises/03';
+
+import Excercise1Final from './excercisesFinal/01';
+import Excercise2Final from './excercisesFinal/02';
+import Excercise3Final from './excercisesFinal/03';
+
 import './App.css';
 
-const functions = new Set();
+const Components = {
+  '01': {
+    id: '01',
+    title: 'Handling form state',
+    next: '02',
+    prev: false,
+    excercise: Excercise1,
+    excerciseFinal: Excercise1Final
+  },
+  '02': {
+    id: '02',
+    title: 'Handling form state with reducers',
+    next: '03',
+    prev: '01',
+    excercise: Excercise2,
+    excerciseFinal: Excercise2Final
+  },
+  '03': {
+    id: '03',
+    title: 'Use Contexts',
+    next: false,
+    prev: '02',
+    excercise: Excercise3,
+    excerciseFinal: Excercise3Final
+  },
+};
 
-function App() {
-  const [amount, setAmount] = React.useState(300.00);
-  const [name, setName] = React.useState();
-  const [paymentMethod, setPaymentMethod] = React.useState('paymentMethod-ab');
-  const [accountNumber, setAccountNumber] = React.useState('2');
-
-  const handleChangeAmount = React.useCallback((event) => {
-    setAmount(event.target.value);
-  }, []);
-
-  const handleChangeName = React.useCallback((event) => {
-    setName(event.target.value);
-  }, []);
-
-  const handleChangePaymentMethod = React.useCallback((event) => {
-    setPaymentMethod(event.target.value);
-  }, []);
-
-  const handleChangeAccountNumber = React.useCallback((event) => {
-    setAccountNumber(event.target.value);
-  }, []);
-
-  functions.add(handleChangeAmount);
-  functions.add(handleChangeName);
-  functions.add(handleChangePaymentMethod);
-  functions.add(handleChangeAccountNumber);
-
+export default function App() {
+  const [component, setComponent] = React.useState(Components['01']);
+  const handleNext = () => setComponent(Components[component.next]);
+  const handlePrev = () => setComponent(Components[component.prev]);
   return (
-    <div className="App">
-      <form>
-        <div className="form-control">
-          <label htmlFor="amount">Monto</label>
-          <input
-            name="amount"
-            id="amount"
-            value={amount}
-            onChange={handleChangeAmount}
-            type="text"
-          />
+    <div>
+      <div className="header">
+        <h1>React Hooks: {component.title}</h1>
+        <div className="navigation">
+          {
+            component.prev
+            ? <button className="navigation-prev" onClick={handlePrev}>{`<=`} Excercise {component.prev}</button>
+            : null
+          }
+          {
+            component.next
+            ? <button className="navigation-next" onClick={handleNext}>Excercise {component.next} =></button>
+            : null
+          }
         </div>
-
-        <div className="form-control">
-          <label htmlFor="name">Nombre</label>
-          <input
-            name="name"
-            id="name"
-            value={name}
-            onChange={handleChangeName}
-            type="text"
-          />
-        </div>
-
-        <div className="form-control">
-          <input
-            name="paymentMethod"
-            id="paymentMethod-ab"
-            value="paymentMethod-ab"
-            onChange={handleChangePaymentMethod}
-            checked={paymentMethod === 'paymentMethod-ab'}
-            type="radio"
-          />
-          <label htmlFor="paymentMethod-ab">Cuenta bancaria</label>
-        </div>
-        
-        <div className="form-control">
-          <input
-            name="paymentMethod"
-            id="paymentMethod-ac"
-            value="paymentMethod-ac"
-            onChange={handleChangePaymentMethod}
-            checked={paymentMethod === 'paymentMethod-ac'}
-            type="radio"
-          />
-          <label htmlFor="paymentMethod-ac">Cuenta con cheque</label>
-        </div>
-
-        <div className="form-control">
-          <label>Cuenta</label>
-          <select name="accNumber" value={accountNumber} onChange={handleChangeAccountNumber}>
-            <option value="1">****1234</option>
-            <option value="2">****2680</option>
-            <option value="3">****3579</option>
-          </select>
-        </div>
-
-      </form>
-      <div>
-        Funciones creadas {functions.size}
       </div>
-      <pre>
-        { JSON.stringify({
-          amount,
-          name,
-          paymentMethod,
-          accountNumber,
-        }, null, 4) }
-      </pre>
+      <div className="content">
+        <div className="content--container">
+          <div className="content-subcontainer">{
+          <ErrorBoundaries>
+            <component.excercise />
+          </ErrorBoundaries>
+          }</div>
+          <div className="content-subcontainer">{<component.excerciseFinal />}</div>
+        </div>
+      </div>
     </div>
-  );
+  )
 }
-
-export default App;

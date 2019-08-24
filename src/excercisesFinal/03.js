@@ -18,19 +18,21 @@ const users = {
 }
 
 function UserProvider(props) {
-  const [user, setUser] = React.useState(null);
+  const [user, setUser] = React.useState({});
 
   const login = (id) => {
-    setUser(users[id] || null);
+    const user = users[id] || {};
+    setUser(user);
   };
 
   const logout = () => {
-    setUser(null);
+    setUser({});
   };
 
   const getUser = () => {
     return user;
   };
+  
   return (
     <UserContext.Provider value={{ login, logout, getUser }}>
       {props.children}
@@ -40,6 +42,7 @@ function UserProvider(props) {
 
 const useUser = () => {
   const context = React.useContext(UserContext);
+  
   if (!context) {
     throw new Error('useUser should be inside UserProvider');
   }
@@ -52,8 +55,12 @@ const UnauthPage = (props) => {
 
   return (
     <div>
-      <input type="text" value={id} onChange={({target}) => setId(target.value)} />
-      <button onClick={() => login(id)}>Logint</button>
+      <form action="#">
+        <div className="form-control">
+          <input type="text" value={id} onChange={({target}) => setId(target.value)} />
+          <button type="button" onClick={() => login(id)}>Login</button>
+        </div>
+      </form>
     </div>
   )
 }
@@ -68,9 +75,12 @@ const AuthPage = (props) => {
   );
 }
 
+const isEmpty = (object) => Object.keys(object).length === 0;
+
 const App = (props) => {
   const { getUser } = useUser();
-  return getUser() === null ? <UnauthPage /> : <AuthPage />;
+  
+  return isEmpty(getUser()) ? <UnauthPage /> : <AuthPage />;
 };
 
 const Root = (props) => {

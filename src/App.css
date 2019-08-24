@@ -1,3 +1,42 @@
+.header {
+  max-width: 800px;
+  margin: auto;
+}
+.header h1 {
+  font-size: 16px;
+  color: #543864;
+  text-align: center;
+}
+.header .navigation button {
+  color: #216583;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 16px;
+}
+.header .navigation-prev {
+  float: left;
+}
+.header .navigation-next {
+  float: right;
+}
+
+.content {
+  max-width: 1000px;
+  margin: 60px auto;
+}
+.content--container {
+  display: flex;
+  width: 100%;
+}
+.content .content-subcontainer {
+  border: 1px solid #293462;
+  border-radius: 5px;
+  flex-grow: 1;
+  margin: 10px 20px;
+  padding: 15px;
+}
+
 form .form-control {
   padding: 12px;
 }
@@ -13,4 +52,12 @@ form .form-control select {
   font-size: 18px;
   border: 1px solid #6e6e6e6e;
   border-radius: 5px;
+}
+form button {
+  background: #00818a;
+  border: none;
+  border-radius: 5px;
+  padding: 12px 15px;
+  color: white;
+  font-size: 16px;
 }
