@@ -15,10 +15,11 @@ const users = {
   }
 }
 
-// 🐢 Create a user context with React.createContext
+// 🐢 Create the user context to handle a global state
+// 🔥 const context = React.createContext(initValue)
 
 function UserProvider(props) {
-  // 🐢 Use useState hook to handle the user state
+  // 🐢 Implements useState hook to handle the user state
   // then implement the hook in the below methods
 
   const login = (id) => {};
@@ -29,21 +30,21 @@ function UserProvider(props) {
 
   // 🐢 render the provider component of our user context
   // created previously.
-  // 🔥 implements the user API as the value in the provider
+  // 🔥 <context.Provider value={API}></context.Provider>
   return (<div>Use custom hooks context</div>);
 }
 
 const useUser = () => {
-  /**
-  * 🔥 Implements React.useContext to use the user context
-  */
+  // 🐢 Get user context value using useContext hook
+  // 🔥 const ctx = React.useContext(context);
   const context = {}
   return context;
 }
 
 const UnauthPage = (props) => {
-  // 🐢 use the useUser hook in order to get the User API to login a new user
   const [id, setId] = React.useState(1);
+  // 🐢 use the useUser hook in order to get the User API to login a new user
+  // 🔥 const API = useUser();
 
   return (
     <div>
@@ -59,6 +60,7 @@ const UnauthPage = (props) => {
 
 const AuthPage = (props) => {
   // 🐢 Retrieve the user by the useUser hook and show their data
+  // 🔥 const { getUser } = useUser();
   return (
     <div>
       <h1>A user</h1>
@@ -68,10 +70,8 @@ const AuthPage = (props) => {
 }
 
 const App = (props) => {
-  /* 🐢: Implement a context hook that retrieve us
-  * the user object value
-  */
-  // return getUser() === null ? <UnauthPage /> : <AuthPage />;
+  // 🐢: Implement a context hook that retrieve us the user object value
+  // 🔥 return getUser() === null ? <UnauthPage /> : <AuthPage />;
   return <div />
 };
 

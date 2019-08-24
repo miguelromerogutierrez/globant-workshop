@@ -3,10 +3,10 @@ import React from 'react';
 // const functions = new Set();
 
 function App() {
-  // 🐢: Use React.useState hook to control the form
-  // 🔥: const [state, setState] = React.useState(initialState);
+  // 🐢 Use React.useState hook to control the form
+  // 🔥 const [state, setState] = React.useState(initialState);
 
-  // 🐢: Then add the onChange handles for every field
+  // 🐢 Then add the onChange handles for every field
   return (
     <div className="App">
       <form>

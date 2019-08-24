@@ -32,8 +32,8 @@ import React from 'react';
 // };
 
 function App() {
-  // 🐢: use React.useReducer hook to handle the state of this form
-  // const [state, dispatch] = React.useReducer(reducer, initState);
+  // 🐢 use React.useReducer hook to handle the state of this form
+  // 🔥 const [state, dispatch] = React.useReducer(reducer, initState);
   
   
   return (

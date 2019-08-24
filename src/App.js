@@ -3,10 +3,12 @@ import ErrorBoundaries from './ErrorBoundaries';
 import Excercise1 from './excercises/01';
 import Excercise2 from './excercises/02';
 import Excercise3 from './excercises/03';
+import Excercise4 from './excercises/04';
 
 import Excercise1Final from './excercisesFinal/01';
 import Excercise2Final from './excercisesFinal/02';
 import Excercise3Final from './excercisesFinal/03';
+import Excercise4Final from './excercisesFinal/04';
 
 import './App.css';
 
@@ -30,11 +32,19 @@ const Components = {
   '03': {
     id: '03',
     title: 'Use Contexts',
-    next: false,
+    next: '04',
     prev: '02',
     excercise: Excercise3,
     excerciseFinal: Excercise3Final
   },
+  '04': {
+    id: '04',
+    title: 'Calendar custom hook',
+    next: false,
+    prev: '03',
+    excercise: Excercise4,
+    excerciseFinal: Excercise4Final
+  }
 };
 
 export default function App() {
