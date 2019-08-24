@@ -3,32 +3,43 @@ import './App.css';
 
 const functions = new Set();
 
+const mapFormToKeys = {
+  amount: 'AMOUNT',
+  name: 'NAME',
+  paymentMethod: 'PAYMENT_METHOD',
+  accountNumber: 'ACCOUNT_NUMBER'
+}
+
+const reducer = (state, {type, payload}) => {
+  switch(type) {
+    case 'AMOUNT':
+      return { ...state, amount: payload };
+    case 'NAME':
+          return { ...state, name: payload };
+    case 'PAYMENT_METHOD':
+      return { ...state, paymentMethod: payload };
+    case 'ACCOUNT_NUMBER':
+      return { ...state, accountNumber: payload };
+    default: 
+    return state;
+  }
+};
+
+const initialState = {
+  amount: 300.00,
+  name: '',
+  paymentMethod: 'paymentMethod-ab',
+  accountNumber: '2',
+};
+
 function App() {
-  const [amount, setAmount] = React.useState(300.00);
-  const [name, setName] = React.useState();
-  const [paymentMethod, setPaymentMethod] = React.useState('paymentMethod-ab');
-  const [accountNumber, setAccountNumber] = React.useState('2');
+  const [state, dispatch] = React.useReducer(reducer, initialState);
 
-  const handleChangeAmount = React.useCallback((event) => {
-    setAmount(event.target.value);
+  const handleChangeState = React.useCallback((event) => {
+    dispatch({ type: mapFormToKeys[event.target.name], payload: event.target.value })
   }, []);
 
-  const handleChangeName = React.useCallback((event) => {
-    setName(event.target.value);
-  }, []);
-
-  const handleChangePaymentMethod = React.useCallback((event) => {
-    setPaymentMethod(event.target.value);
-  }, []);
-
-  const handleChangeAccountNumber = React.useCallback((event) => {
-    setAccountNumber(event.target.value);
-  }, []);
-
-  functions.add(handleChangeAmount);
-  functions.add(handleChangeName);
-  functions.add(handleChangePaymentMethod);
-  functions.add(handleChangeAccountNumber);
+  functions.add(handleChangeState);
 
   return (
     <div className="App">
@@ -38,8 +49,8 @@ function App() {
           <input
             name="amount"
             id="amount"
-            value={amount}
-            onChange={handleChangeAmount}
+            value={state.amount}
+            onChange={handleChangeState}
             type="text"
           />
         </div>
@@ -49,8 +60,8 @@ function App() {
           <input
             name="name"
             id="name"
-            value={name}
-            onChange={handleChangeName}
+            value={state.name}
+            onChange={handleChangeState}
             type="text"
           />
         </div>
@@ -60,8 +71,8 @@ function App() {
             name="paymentMethod"
             id="paymentMethod-ab"
             value="paymentMethod-ab"
-            onChange={handleChangePaymentMethod}
-            checked={paymentMethod === 'paymentMethod-ab'}
+            onChange={handleChangeState}
+            checked={state.paymentMethod === 'paymentMethod-ab'}
             type="radio"
           />
           <label htmlFor="paymentMethod-ab">Cuenta bancaria</label>
@@ -72,8 +83,8 @@ function App() {
             name="paymentMethod"
             id="paymentMethod-ac"
             value="paymentMethod-ac"
-            onChange={handleChangePaymentMethod}
-            checked={paymentMethod === 'paymentMethod-ac'}
+            onChange={handleChangeState}
+            checked={state.paymentMethod === 'paymentMethod-ac'}
             type="radio"
           />
           <label htmlFor="paymentMethod-ac">Cuenta con cheque</label>
@@ -81,7 +92,7 @@ function App() {
 
         <div className="form-control">
           <label>Cuenta</label>
-          <select name="accNumber" value={accountNumber} onChange={handleChangeAccountNumber}>
+          <select name="accountNumber" value={state.accountNumber} onChange={handleChangeState}>
             <option value="1">****1234</option>
             <option value="2">****2680</option>
             <option value="3">****3579</option>
@@ -93,12 +104,7 @@ function App() {
         Funciones creadas {functions.size}
       </div>
       <pre>
-        { JSON.stringify({
-          amount,
-          name,
-          paymentMethod,
-          accountNumber,
-        }, null, 4) }
+        { JSON.stringify(state, null, 4) }
       </pre>
     </div>
   );
