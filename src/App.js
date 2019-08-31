@@ -4,11 +4,13 @@ import Excercise1 from './excercises/01';
 import Excercise2 from './excercises/02';
 import Excercise3 from './excercises/03';
 import Excercise4 from './excercises/04';
+import Excercise5 from './excercises/05';
 
 import Excercise1Final from './excercisesFinal/01';
 import Excercise2Final from './excercisesFinal/02';
 import Excercise3Final from './excercisesFinal/03';
 import Excercise4Final from './excercisesFinal/04';
+import Excercise5Final from './excercisesFinal/05';
 
 import './App.css';
 
@@ -40,10 +42,18 @@ const Components = {
   '04': {
     id: '04',
     title: 'Calendar custom hook',
-    next: false,
+    next: '05',
     prev: '03',
     excercise: Excercise4,
     excerciseFinal: Excercise4Final
+  },
+  '05': {
+    id: '05',
+    title: 'State form hook',
+    next: false,
+    prev: '04',
+    excercise: Excercise5,
+    excerciseFinal: Excercise5Final
   }
 };
 
