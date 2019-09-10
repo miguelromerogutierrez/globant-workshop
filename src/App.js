@@ -5,12 +5,14 @@ import Excercise2 from './excercises/02';
 import Excercise3 from './excercises/03';
 import Excercise4 from './excercises/04';
 import Excercise5 from './excercises/05';
+import Excercise6 from './excercises/06';
 
 import Excercise1Final from './excercisesFinal/01';
 import Excercise2Final from './excercisesFinal/02';
 import Excercise3Final from './excercisesFinal/03';
 import Excercise4Final from './excercisesFinal/04';
 import Excercise5Final from './excercisesFinal/05';
+import Excercise6Final from './excercisesFinal/06';
 
 import './App.css';
 
@@ -50,10 +52,18 @@ const Components = {
   '05': {
     id: '05',
     title: 'State form hook',
-    next: false,
+    next: '06',
     prev: '04',
     excercise: Excercise5,
     excerciseFinal: Excercise5Final
+  },
+  '06': {
+    id: '06',
+    title: 'Use effect hook',
+    next: false,
+    prev: '05',
+    excercise: Excercise6,
+    excerciseFinal: Excercise6Final
   }
 };
 

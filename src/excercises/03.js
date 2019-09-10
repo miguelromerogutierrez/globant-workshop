@@ -69,9 +69,11 @@ const AuthPage = (props) => {
   );
 }
 
+const isEmpty = (object) => Object.keys(object).length === 0;
+
 const App = (props) => {
   // 🐢: Implement a context hook that retrieve us the user object value
-  // 🔥 return getUser() === null ? <UnauthPage /> : <AuthPage />;
+  // 🔥 return isEmpty(user) ? <UnauthPage /> : <AuthPage />;
   return <div />
 };
 

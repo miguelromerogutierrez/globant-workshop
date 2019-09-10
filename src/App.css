@@ -138,3 +138,16 @@ form button {
 .calendar-grid__day.payment-day {
   color: #132238;
 }
+
+.exsix {
+  margin: auto;
+  text-align: center;
+}
+.exsix .label {
+  display: block;
+  font-weight: bold;
+}
+.exsix .value {
+  display: block;
+  font-style: italic;
+}
