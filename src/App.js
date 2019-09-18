@@ -6,6 +6,7 @@ import Excercise3 from './excercises/03';
 import Excercise4 from './excercises/04';
 import Excercise5 from './excercises/05';
 import Excercise6 from './excercises/06';
+import Excercise7 from './excercises/07';
 
 import Excercise1Final from './excercisesFinal/01';
 import Excercise2Final from './excercisesFinal/02';
@@ -13,6 +14,7 @@ import Excercise3Final from './excercisesFinal/03';
 import Excercise4Final from './excercisesFinal/04';
 import Excercise5Final from './excercisesFinal/05';
 import Excercise6Final from './excercisesFinal/06';
+import Excercise7Final from './excercisesFinal/07';
 
 import './App.css';
 
@@ -60,10 +62,18 @@ const Components = {
   '06': {
     id: '06',
     title: 'Use effect hook',
-    next: false,
+    next: '07',
     prev: '05',
     excercise: Excercise6,
     excerciseFinal: Excercise6Final
+  },
+  '07': {
+    id: '07',
+    title: 'Use fetching',
+    next: false,
+    prev: '06',
+    excercise: Excercise7,
+    excerciseFinal: Excercise7Final
   }
 };
 
