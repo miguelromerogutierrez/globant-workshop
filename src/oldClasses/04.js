@@ -80,13 +80,13 @@ class Calendar extends React.Component{
   };
 
   render() {
-    return {
+    return this.props.children({
       calendar: this.state,
       nextYear: this.nextYear,
       prevYear: this.prevYear,
       nextMonth: this.nextMonth,
       prevMonth: this.prevMonth
-    };
+    });
   }
 };
 
